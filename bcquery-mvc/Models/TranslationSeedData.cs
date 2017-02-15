@@ -6,7 +6,7 @@ using System.Web;
 
 namespace bcquery_mvc
 {
-    public class TranslationSeedData :DropCreateDatabaseAlways<TranslationEntities>
+    public class TranslationSeedData :CreateDatabaseIfNotExists<TranslationEntities>
     {
         protected override void Seed(TranslationEntities context)
         {
