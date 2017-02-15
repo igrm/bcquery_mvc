@@ -1,0 +1,71 @@
+﻿@model TranslationViewModel
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>@Model.LBL_TITLE</title>
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans+Condensed" rel="stylesheet" type="text/css">
+    @Styles.Render("~/Content/css/all.css")
+    @Scripts.Render("~/bundles/angular/all.js")
+    <style>
+        * {
+            outline: 0px solid lime;
+            font-family: 'Fira Sans Condensed', sans-serif;
+        }
+
+        .left {
+            text-align: left;
+        }
+    </style>
+
+</head>
+
+<body layout="column" ng-app="BCQuery" layout-fill ng-controller="SideMenuCtrl">
+    <md-toolbar layout="row">
+        <div class="md-toolbar-tools">
+            <md-button class="md-icon-button" ng-click="toggleMenu()">
+                <md-icon md-svg-src="~/Content/5.svg"></md-icon>
+            </md-button>
+            <span>@Model.LBL_TITLE</span>
+        </div>
+    </md-toolbar>
+    <div layout="row" flex>
+        <md-sidenav md-whiteframe="3" md-component-id='sideMenu' md-is-locked-open="$mdMedia('gt-md')">
+            <md-list>
+                <md-list-item>
+                    <md-button flex class="left" ng-click="toggleView('BlocksByDate')">
+                        <md-icon md-svg-src="~/Content/1.svg"></md-icon>
+                        &nbsp;@Model.LBL_GETBLOCKSBYDATE
+                    </md-button>
+                </md-list-item>
+                <md-list-item>
+                    <md-button flex class="left" ng-click="toggleView('BlockTransactions')">
+                        <md-icon md-svg-src="~/Content/2.svg"></md-icon>
+                        &nbsp;@Model.LBL_GETBLOCKTRANSACTIONS
+                    </md-button>
+                </md-list-item>
+                <md-list-item>
+                    <md-button flex class="left" ng-click="toggleView('AddressTransactions')">
+                        <md-icon md-svg-src="~/Content/3.svg"></md-icon>
+                        &nbsp;@Model.LBL_GETADDRESSTRANSACTIONS
+                    </md-button>
+                </md-list-item>
+                <md-list-item>
+                    <md-button flex class="left" ng-click="toggleView('About')">
+                        <md-icon md-svg-src="~/Content/4.svg"></md-icon>
+                        &nbsp;@Model.LBL_ABOUT
+                    </md-button>
+                </md-list-item>
+            </md-list>
+        </md-sidenav>
+        <md-content flex layout="row" layout-align="center start" ng-cloak>
+            <div ng-include="'@Url.Action("BlocksByDate", "Application")'" ng-show="currentView == 'BlocksByDate'"></div>
+            <div ng-include="'@Url.Action("BlockTransactions", "Application")'" ng-show="currentView == 'BlockTransactions'"></div>
+            <div ng-include="'@Url.Action("AddressTransactions", "Application")'" ng-show="currentView == 'AddressTransactions'"></div>
+            <div ng-include="'@Url.Action("About", "Application")'" ng-show="currentView == 'About'"></div>
+        </md-content>
+    </div>
+    @Scripts.Render("~/bundles/application/all.js")
+</body>
+
+</html>

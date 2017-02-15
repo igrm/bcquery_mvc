@@ -1,0 +1,70 @@
+﻿@model TranslationViewModel
+<div ng-controller="BlockTransactionsCtrl" ng-init="query.reportingValue = '0000000000000000001b67a7b9de8799a2e70dc09a464326be96c14df32737db';getTransactions();">
+    <md-card>
+        <md-card-header layout="row" layout-align="start center">
+            <md-card-avatar>
+                <md-icon class="md-user-avatar" md-svg-src="~/Content/2.svg"></md-icon>
+            </md-card-avatar>
+            <md-card-header-text class="md-title">@Model.LBL_GETBLOCKTRANSACTIONS</md-card-header-text>
+        </md-card-header>
+        <md-card-content>
+            <p>
+                @Model.LBL_GETBLOCKTRANSACTIONS_DESC
+            </p>
+        </md-card-content>
+        <md-card-actions layout="row" layout-align="start center">
+            <md-input-container flex=80>
+                <label>@Model.LBL_BLOCKHASH</label>
+                <input ng-model="query.reportingValue" required value="">
+            </md-input-container>
+            &nbsp;
+            <md-button class="md-primary md-raised" ng-click="getTransactions()">
+                <md-icon md-svg-src="~/Content/6.svg"></md-icon>&nbsp;@Model.LBL_SEARCH&nbsp;
+            </md-button>
+        </md-card-actions>
+    </md-card>
+    <md-card>
+        <md-card-content>
+            <md-table-container>
+                <table md-table md-row-select single ng-model="selected" md-progress="promise">
+                    <thead md-head md-order="query.order" md-on-reorder="getTransactions">
+                        <tr md-row>
+                            <th md-column md-order-by="hash">@Model.LBL_TRANSACTIONHASH</th>
+                            <th md-column md-numeric md-order-by="confirmCount">@Model.LBL_CONFIRMATIONCOUNT</th>
+                        </tr>
+                    </thead>
+                    <tbody md-body>
+                        <tr md-row md-select="transaction" md-select-id="hash" md-auto-select ng-repeat="transaction in transactions">
+                            <td md-cell style="padding-top:5px;">
+                                <b style="color:navy;">{{transaction.hash}}</b>
+                                <table style="margin-top:5px;">
+                                    <tr>
+                                        <th>Type
+                            </td>
+                            <th>@Model.LBL_ADDRESS</td>
+                            <th>@Model.LBL_TRANSACTIONHASH</td>
+                            <th>@Model.LBL_BTCAMOUNT</td>
+                        </tr>
+                        <tr ng-repeat="input in transaction.input">
+                            <td>INPUT</td>
+                            <td>{{input.address}}</td>
+                            <td>{{input.hash}}</td>
+                            <td style="text-align:right;">{{input.amount}}</td>
+                        </tr>
+                        <tr ng-repeat="output in transaction.output">
+                            <td>OUTPUT</td>
+                            <td>{{output.address}}</td>
+                            <td>{{output.hash}}</td>
+                            <td style="text-align:right;">{{output.amount}}</td>
+                        </tr>
+                </table>
+                </td>
+                <td md-cell style="padding-top:5px;color:navy;" layout=row layout-align="end start">{{transaction.confirmCount}}</td>
+                </tr>
+                </tbody>
+                </table>
+            </md-table-container>
+            <md-table-pagination md-limit="query.limit" md-limit-options="[5, 20, 40, 60, 80, 100]" md-page="query.page" md-total="{{total}}" md-on-paginate="getTransactions" md-page-select></md-table-pagination>
+        </md-card-content>
+    </md-card>
+</div>

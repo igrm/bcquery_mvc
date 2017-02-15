@@ -1,0 +1,24 @@
+﻿@model TranslationViewModel
+<md-card>
+    <md-card-header layout="row" layout-align="start center">
+        <md-card-avatar>
+            <md-icon class="md-user-avatar" md-svg-src="~/Content/4.svg"></md-icon>
+        </md-card-avatar>
+        <md-card-header-text class="md-title">@Model.LBL_ABOUT</md-card-header-text>
+    </md-card-header>
+    <md-card-content>
+        <p>@Model.LBL_WEBAPP </p>
+        <p>@Model.LBL_PROVIDES</p>
+        <ul>
+            <li>
+                @Model.LBL_GETBLOCKSBYDATE_DESC
+            </li>
+            <li>
+                @Model.LBL_GETBLOCKTRANSACTIONS_DESC
+            </li>
+            <li>
+                @Model.LBL_GETADDRESSTRANSACTIONS_DESC
+            </li>
+        </ul>
+    </md-card-content>
+</md-card>
