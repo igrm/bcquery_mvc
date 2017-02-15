@@ -180,7 +180,7 @@
     <Content Include="Scripts\angular-material\angular-material.js" />
     <Content Include="Scripts\angular-material\angular-material.min.js" />
     <Content Include="Scripts\angular-resource\angular-resource.js" />
-    <None Include="Scripts\angular-resource\angular-resource.min.js" />
+    <Content Include="Scripts\angular-resource\angular-resource.min.js" />
     <Content Include="Scripts\angular\angular.js" />
     <Content Include="Scripts\angular\angular.min.js" />
     <Content Include="Scripts\application\app.js" />
