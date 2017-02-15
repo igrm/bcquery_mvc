@@ -1,2 +1,2 @@
-# bcquery_mvc
+# bcquery-mvc
 Online Bitcoin Blockchain Query Tool
